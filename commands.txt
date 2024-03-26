@@ -1,0 +1,9 @@
+dotnet ef migrations add Init --startup-project ..\Hadasim4.0_Tar1_Backend\Hadasim4.0_Tar1_Backend.csproj
+
+dotnet ef database update --startup-project ..\Hadasim4.0_Tar1_Backend\Hadasim4.0_Tar1_Backend.csproj
+
+dotnet ef database drop --startup-project ..\Hadasim4.0_Tar1_Backend\Hadasim4.0_Tar1_Backend.csproj
+
+dotnet ef database --help
+
+dotnet ef database drop --help

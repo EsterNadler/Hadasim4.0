@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\Hadasim4.0_Tar1_Backend.props" />
-</Project>
