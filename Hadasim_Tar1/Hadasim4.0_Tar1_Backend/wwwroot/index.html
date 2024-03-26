@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patients</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/scripts.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="patients-list">
+            <h1>Patients List</h1>
+            <div id="patientList" class="scrollable"></div>
+            <!--<div id="patientList"></div>-->
+        </div>
+        <div id="formSection">
+            <h2>Manage Patient</h2>
+            <form id="patientForm">
+                <input type="hidden" id="id" name="id" class="id" required>
+                <label for="Firstname">First Name:</label>
+                <input type="text" id="fname" name="FirstName" class="fname" required>
+                <label for="lastname">Last Name:</label>
+                <input type="text" id="lname" name="LastName" class="lname" required>
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" class="address" required>
+                <label for="birthdate">Birth Date:</label>
+                <input type="text" id="birth" name="birthDate" class="birth" required>
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" class="phone" required>
+                <label for="cellphone">Cell Phone Number:</label>
+                <input type="text" id="cellPhone" name="cellPhone" class="cellPhone" required>
+                <!--<select id="gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>-->
+                <button type="submit" id="submitBtn" class="submit">Save</button>
+            </form>
+        </div>
+        <div id="illnessesandvaccins">
+            <div id="ilnesses">
+                <h1>Illnesses:</h1>
+                <div id="illnessesList" class="scrollable"></div>
+            </div>
+            <div id="vaccins">
+                <h1>Vaccins:</h1>
+                <div id="vaccinsList" class="scrollable"></div>
+            </div>
+        </div>
+        </div>
+</body>
+</html>

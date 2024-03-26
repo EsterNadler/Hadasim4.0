@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "Hash": "gU0V2GvmUU95AhNsS/0BaDXaJlO9/UwqEOgWmcG1CaY=",
+  "Source": "Hadasim4.0_Tar1_Backend",
+  "BasePath": "_content/Hadasim4.0_Tar1_Backend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Hadasim4.0_Tar1_Backend\\wwwroot",
+      "Source": "Hadasim4.0_Tar1_Backend",
+      "ContentRoot": "C:\\Users\\ester\\Desktop\\Hadasim_Tar1\\Hadasim4.0_Tar1_Backend\\wwwroot\\",
+      "BasePath": "_content/Hadasim4.0_Tar1_Backend",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\ester\\Desktop\\Hadasim_Tar1\\Hadasim4.0_Tar1_Backend\\wwwroot\\css\\styles.css",
+      "SourceId": "Hadasim4.0_Tar1_Backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ester\\Desktop\\Hadasim_Tar1\\Hadasim4.0_Tar1_Backend\\wwwroot\\",
+      "BasePath": "_content/Hadasim4.0_Tar1_Backend",
+      "RelativePath": "css/styles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Always",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\styles.css"
+    },
+    {
+      "Identity": "C:\\Users\\ester\\Desktop\\Hadasim_Tar1\\Hadasim4.0_Tar1_Backend\\wwwroot\\index.html",
+      "SourceId": "Hadasim4.0_Tar1_Backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ester\\Desktop\\Hadasim_Tar1\\Hadasim4.0_Tar1_Backend\\wwwroot\\",
+      "BasePath": "_content/Hadasim4.0_Tar1_Backend",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Always",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\Users\\ester\\Desktop\\Hadasim_Tar1\\Hadasim4.0_Tar1_Backend\\wwwroot\\js\\scripts.js",
+      "SourceId": "Hadasim4.0_Tar1_Backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ester\\Desktop\\Hadasim_Tar1\\Hadasim4.0_Tar1_Backend\\wwwroot\\",
+      "BasePath": "_content/Hadasim4.0_Tar1_Backend",
+      "RelativePath": "js/scripts.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Always",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\scripts.js"
+    }
+  ]
+}

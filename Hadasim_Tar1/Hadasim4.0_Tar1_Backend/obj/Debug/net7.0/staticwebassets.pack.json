@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\ester\\Desktop\\Hadasim_Tar1\\Hadasim4.0_Tar1_Backend\\wwwroot\\css\\styles.css",
+      "PackagePath": "staticwebassets\\css\\styles.css"
+    },
+    {
+      "Id": "C:\\Users\\ester\\Desktop\\Hadasim_Tar1\\Hadasim4.0_Tar1_Backend\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\ester\\Desktop\\Hadasim_Tar1\\Hadasim4.0_Tar1_Backend\\wwwroot\\js\\scripts.js",
+      "PackagePath": "staticwebassets\\js\\scripts.js"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Hadasim4.0_Tar1_Backend.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.Hadasim4.0_Tar1_Backend.props",
+      "PackagePath": "build\\Hadasim4.0_Tar1_Backend.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.Hadasim4.0_Tar1_Backend.props",
+      "PackagePath": "buildMultiTargeting\\Hadasim4.0_Tar1_Backend.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.Hadasim4.0_Tar1_Backend.props",
+      "PackagePath": "buildTransitive\\Hadasim4.0_Tar1_Backend.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
