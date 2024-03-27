@@ -52,6 +52,12 @@ namespace Hadasim4._0_Tar1_Backend.Controllers
             return Ok(vaccins);
         }
 
+        [HttpGet("statistics")]
+        public async Task<IActionResult> GetStats()
+        {
+            return Ok();
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Vaccin vaccin)//from body json////

@@ -126,5 +126,10 @@ namespace BL
                 throw new Exception("Illness not found");
             }
         }
+
+        public object GetStats()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

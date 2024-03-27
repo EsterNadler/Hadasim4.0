@@ -5,8 +5,13 @@
     const patientVaccins = document.getElementById("vaccinsList");
     const illnessForm = document.getElementById("addillness");
     const vaccinForm = document.getElementById("addvaccin");
+    const statisticsBtn = document.getElementById("statisticsBtn");
 
     //**************** Init page data *************************
+
+    statisticsBtn.addEventListener('click', function () {
+        window.open("statistics.html");
+    });
 
     function fetchPatients() {
 
