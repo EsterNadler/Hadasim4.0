@@ -1,4 +1,5 @@
-﻿using DAL;
+﻿using Contracts;
+using DAL;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -49,6 +50,27 @@ namespace BL
                 throw;
             }
         }
+
+        public async Task<IEnumerable<Contracts.Vaccin>> GetVaccinsByPatientID(string patient)
+        {
+            try
+            {
+                var dbvaccins = await context.Vaccins.ToListAsync();
+                return dbvaccins.Select(dbv => new Contracts.Vaccin
+                {
+                    Id = dbv.Id,
+                    Date = dbv.Date,
+                    PatientID = dbv.PatientID,
+                    VaccinsManufacturerID = dbv.VaccinsManufacturerID,
+                }).Where(dbv => dbv.PatientID == patient) ;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
 
         public async Task<Contracts.Vaccin> GetVaccinById(Guid vaccinId)
         {

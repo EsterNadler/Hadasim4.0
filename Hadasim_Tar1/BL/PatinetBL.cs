@@ -46,7 +46,7 @@ namespace BL
             }
             catch (Exception ex)
             {
-
+                // log error
                 throw;
             }
         }
@@ -69,7 +69,7 @@ namespace BL
             }
             else
             {
-                throw new Exception("Patient not found");
+                throw new KeyNotFoundException("Patient not found");
             }
         }
 

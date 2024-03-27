@@ -28,21 +28,48 @@ namespace BL
                 NegativeDate = illness.NegativeDate,
                 PatientId=illness.PatientId
             };
-            context.Illnesses.Add(dbillness);
-            await context.SaveChangesAsync();
+            try
+            {
+                context.Illnesses.Add(dbillness);
+                await context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                throw;
+            }
         }
         public async Task<IEnumerable<Contracts.Illness>> GetIllnessess()
         {
             try
             {
                 var dbillnesses = await context.Illnesses.ToListAsync();
-                return dbillnesses.Select(dbp => new Contracts.Illness
+                return dbillnesses.Select(dbi => new Contracts.Illness
                 {
-                    Id = dbp.Id,
-                    PositiveDate = dbp.PositiveDate,
-                    NegativeDate = dbp.NegativeDate,
-                    PatientId = dbp.PatientId
+                    Id = dbi.Id,
+                    PositiveDate = dbi.PositiveDate,
+                    NegativeDate = dbi.NegativeDate,
+                    PatientId = dbi.PatientId
                 });
+            }
+            catch (InvalidOperationException)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<Contracts.Illness>> GetillnessesByPatientId(string patient)
+        {
+            try
+            {
+                var dbillnesses = await context.Illnesses.ToListAsync();
+                return dbillnesses.Select(dbi => new Contracts.Illness
+                {
+                    Id = dbi.Id,
+                    PositiveDate = dbi.PositiveDate,
+                    NegativeDate = dbi.NegativeDate,
+                    PatientId = dbi.PatientId
+                }).Where(dbp=>dbp.PatientId==patient);
             }
             catch (Exception ex)
             {

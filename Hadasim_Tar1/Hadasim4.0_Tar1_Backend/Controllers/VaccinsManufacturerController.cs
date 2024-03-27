@@ -1,12 +1,14 @@
 ﻿using BL;
 using Contracts;
 using DAL.Models;
+using Hadasim4._0_Tar1_Backend.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hadasim4._0_Tar1_Backend.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [ValidateModelState]
     public class VaccinsManufacturerController:ControllerBase
     {
         private readonly VaccinsManufacturerBL bl;

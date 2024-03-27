@@ -1,5 +1,6 @@
 using BL;
 using Contracts;
+using Hadasim4._0_Tar1_Backend.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hadasim4._0_Tar1_Backend.Controllers
@@ -7,6 +8,7 @@ namespace Hadasim4._0_Tar1_Backend.Controllers
 
     [ApiController]
     [Route("[controller]")]
+    [ValidateModelState]
     public class PatientController : ControllerBase
     {
         private readonly PatinetBL bl;
@@ -43,6 +45,7 @@ namespace Hadasim4._0_Tar1_Backend.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Patient patient)//from body json////
         {
+            
             if (patient == null)
             {
                 return BadRequest("Patient object is null");

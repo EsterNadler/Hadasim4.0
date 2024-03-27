@@ -1,11 +1,13 @@
 ﻿using BL;
 using Contracts;
+using Hadasim4._0_Tar1_Backend.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hadasim4._0_Tar1_Backend.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [ValidateModelState]
     public class IllnessController:ControllerBase
     {
         private readonly IllnessBL bl;
@@ -20,6 +22,18 @@ namespace Hadasim4._0_Tar1_Backend.Controllers
         {
             //return await bl.GetPatientById(id);
             var illness = await bl.GetillnessById(id);
+            if (illness == null)
+            {
+                return NotFound();
+            }
+            return Ok(illness);
+        }
+
+        [HttpGet("patient/{id}")]
+        public async Task<IActionResult> Get(string id)
+        {
+            //return await bl.GetPatientById(id);
+            var illness = await bl.GetillnessesByPatientId(id);
             if (illness == null)
             {
                 return NotFound();

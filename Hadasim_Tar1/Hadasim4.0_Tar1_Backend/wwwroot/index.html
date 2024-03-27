@@ -17,7 +17,8 @@
         <div id="formSection">
             <h2>Manage Patient</h2>
             <form id="patientForm">
-                <input type="hidden" id="id" name="id" class="id" required>
+                <label for="ID">Id:</label>
+                <input type="text" id="id" name="id" class="id" required>
                 <label for="Firstname">First Name:</label>
                 <input type="text" id="fname" name="FirstName" class="fname" required>
                 <label for="lastname">Last Name:</label>
@@ -25,28 +26,60 @@
                 <label for="address">Address:</label>
                 <input type="text" id="address" name="address" class="address" required>
                 <label for="birthdate">Birth Date:</label>
-                <input type="text" id="birth" name="birthDate" class="birth" required>
+                <input type="date" id="birth" name="birthDate" class="birth" required>
                 <label for="phone">Phone Number:</label>
-                <input type="text" id="phone" name="phone" class="phone" required>
+                <input type="tel" id="phone" name="phone" class="phone" pattern="[0][1-9][0-9]{7}" required>
                 <label for="cellphone">Cell Phone Number:</label>
-                <input type="text" id="cellPhone" name="cellPhone" class="cellPhone" required>
-                <!--<select id="gender" name="gender" required>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select>-->
+                <input type="tel" id="cellPhone" name="cellPhone" class="cellPhone" pattern="[0][1-9][0-9]{8}" required>
+
+                <div id="imageContainer">
+                    <!-- התמונה תופיע כאן -->
+                </div>
+
+                <div id="imageForm">
+                    <label for="imageUpload">Upload Image:</label>
+                    <input type="file" id="imageUpload" name="imageUpload" accept="image/*" required>
+                </div>
+
                 <button type="submit" id="submitBtn" class="submit">Save</button>
             </form>
         </div>
+
+
+        <div id="addIllnessesandvaccins">
+            <form id="addvaccin">
+                <h1>Add Vaccin:</h1>
+                <label for="date">Date:</label>
+                <input type="date" id="vaccinDate" name="vaccinDate" class="vaccinDate" required>
+                <label for="manufacturer">Manufacturer:</label>
+                <select id="manufacturer" name="manufacturer" class="manufacturer" required></select>
+                <br/>
+                <button type="submit" id="submitVaccin" class="submitVaccin">Save</button>
+            </form>
+            <form id="addillness">
+                <h1>Add Illness:</h1>
+                <label for="sdate">Start Date:</label>
+                <input type="date" id="sDate" name="sDate" class="sDate" required>
+                <label for="fdate">Finish Date:</label>
+                <input type="date" id="fDate" name="fDate" class="fDate">
+                <br/>
+                <button type="submit" id="submitIllness" class="submitIllness">Save</button>
+            </form>
+        </div>
+
         <div id="illnessesandvaccins">
             <div id="ilnesses">
                 <h1>Illnesses:</h1>
                 <div id="illnessesList" class="scrollable"></div>
             </div>
+            <br />
+            <hr />
+            <br />
             <div id="vaccins">
                 <h1>Vaccins:</h1>
                 <div id="vaccinsList" class="scrollable"></div>
             </div>
         </div>
-        </div>
+    </div>
 </body>
 </html>
