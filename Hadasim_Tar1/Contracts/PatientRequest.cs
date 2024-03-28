@@ -27,6 +27,6 @@ namespace Contracts
         [MaxLength(10)]
         public string CellPhone { get; set; } = default!;
 
-        public IFormFile Image { get; set; } = default!;
+        public IFormFile? Image { get; set; } = default!;
     }
 }
