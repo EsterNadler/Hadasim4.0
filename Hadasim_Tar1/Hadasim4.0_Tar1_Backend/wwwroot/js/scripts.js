@@ -172,8 +172,6 @@
                     }
                     fetchPatients(); // Refresh patient list after submitting the form
                     patientForm.reset(); // Clear form fields after submission
-                    patientVaccins.reset();
-                    patientIllnesses.reset();
 
                     idInput.disabled = false;
                 })
@@ -195,8 +193,6 @@
                     }
                     fetchPatients(); // Refresh patient list after submitting the form
                     patientForm.reset(); // Clear form fields after submission
-                    patientVaccins.reset();
-                    patientIllnesses.reset();
                 })
                 .catch(error => {
                     console.error("Error saving patient:", JSON.stringify(error))
