@@ -44,18 +44,18 @@ namespace Hadasim4._0_Tar1_Backend.Controllers
         [HttpGet("statistics")]
         public async Task<IActionResult> GetStats()
         {
-            //var stats = bl.GetStats();
-            //return Ok(stats);
-            var start = DateTime.Now.AddMonths(-1).Date;
-            var end = DateTime.Now.Date;
-            var dict = new Dictionary<string, int>();
-            var rnd = new Random(1);
+            var stats =await bl.GetStats();
+            return Ok(stats);
+            //var start = DateTime.Now.AddMonths(-1).Date;
+            //var end = DateTime.Now.Date;
+            //var dict = new Dictionary<string, int>();
+            //var rnd = new Random(1);
 
-            for (DateTime start2 = start; start2 <= end; start2 = start2.AddDays(1))
-            {
-                dict.Add(start2.ToString("dd-MM-yyyy"), rnd.Next(30));
-            }
-            return Ok(dict);
+            //for (DateTime start2 = start; start2 <= end; start2 = start2.AddDays(1))
+            //{
+            //    dict.Add(start2.ToString("dd-MM-yyyy"), rnd.Next(30));
+            //}
+            //return Ok(dict);
         }
 
         [HttpGet]

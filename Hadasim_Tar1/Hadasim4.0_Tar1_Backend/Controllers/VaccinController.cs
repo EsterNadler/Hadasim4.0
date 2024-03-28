@@ -97,5 +97,24 @@ namespace Hadasim4._0_Tar1_Backend.Controllers
             await bl.Delete(id);
             return NoContent();
         }
+
+
+        [HttpGet("vaccination-status")]
+        public async Task<IActionResult> GetVaccinationStatus()
+        {
+            try
+            {
+                int vaccinatedCount = await bl.GetVaccinatedCount(); // פונקציה שמחזירה את מספר האנשים שחוסנו
+                int unvaccinatedCount = await bl.GetUnvaccinatedCount(); // פונקציה שמחזירה את מספר האנשים שעדיין לא חוסנו
+
+                int[] vaccinationStatus = new int[] { vaccinatedCount, unvaccinatedCount }; // יצירת מערך של זוג סדור [X, Y]
+
+                return Ok(vaccinationStatus); // החזרת המערך בתור תגובת JSON
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
     }
 }

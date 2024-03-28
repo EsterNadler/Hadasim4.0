@@ -1,6 +1,7 @@
 ﻿using Contracts;
 using DAL;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,11 +23,11 @@ namespace BL
         {
             var dbVaccin = new DAL.Models.Vaccin
             {
-                Id = Guid.NewGuid(),//??????????????????????????????????????in contracts already...???
-                Date= vaccin.Date,
+                Id = Guid.NewGuid(),
+                Date = vaccin.Date,
                 PatientID = vaccin.PatientID,
-                VaccinsManufacturerID=vaccin.VaccinsManufacturerID,
-                
+                VaccinsManufacturerID = vaccin.VaccinsManufacturerID,
+
             };
             context.Vaccins.Add(dbVaccin);
             await context.SaveChangesAsync();
@@ -62,7 +63,7 @@ namespace BL
                     Date = dbv.Date,
                     PatientID = dbv.PatientID,
                     VaccinsManufacturerID = dbv.VaccinsManufacturerID,
-                }).Where(dbv => dbv.PatientID == patient) ;
+                }).Where(dbv => dbv.PatientID == patient);
             }
             catch (Exception ex)
             {
@@ -119,6 +120,16 @@ namespace BL
             {
                 throw new Exception("Vaccin not found");
             }
+        }
+
+        public async Task<int> GetVaccinatedCount()
+        {
+            return (await GetVaccins()).GroupBy(x => x.PatientID).Count();
+        }
+
+        public async Task<int> GetUnvaccinatedCount()
+        {
+            return await context.Patients.CountAsync() - await GetVaccinatedCount();
         }
     }
 }

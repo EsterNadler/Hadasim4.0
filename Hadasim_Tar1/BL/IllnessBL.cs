@@ -26,7 +26,7 @@ namespace BL
                 Id = Guid.NewGuid(),
                 PositiveDate = illness.PositiveDate,
                 NegativeDate = illness.NegativeDate,
-                PatientId=illness.PatientId
+                PatientId = illness.PatientId
             };
             try
             {
@@ -38,11 +38,18 @@ namespace BL
                 throw;
             }
         }
-        public async Task<IEnumerable<Contracts.Illness>> GetIllnessess()
+        public async Task<IEnumerable<Contracts.Illness>> GetIllnessess(Func<DAL.Models.Illness, bool>? func = null)
         {
+            List<DAL.Models.Illness> dbillnesses;
+            var x = context.Illnesses;
+
             try
             {
-                var dbillnesses = await context.Illnesses.ToListAsync();
+                if (func == null)
+                    dbillnesses = await context.Illnesses.ToListAsync();
+                else
+                    dbillnesses = await context.Illnesses./*Where(func).*/ToListAsync();
+
                 return dbillnesses.Select(dbi => new Contracts.Illness
                 {
                     Id = dbi.Id,
@@ -69,7 +76,7 @@ namespace BL
                     PositiveDate = dbi.PositiveDate,
                     NegativeDate = dbi.NegativeDate,
                     PatientId = dbi.PatientId
-                }).Where(dbp=>dbp.PatientId==patient);
+                }).Where(dbp => dbp.PatientId == patient);
             }
             catch (Exception ex)
             {
@@ -127,9 +134,31 @@ namespace BL
             }
         }
 
-        public object GetStats()
+
+        public async Task<object> GetStats()
         {
-            throw new NotImplementedException();
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
+            Random random = new Random();
+            DateTime endDate = DateTime.Today.Date;
+            DateTime startDate = endDate.AddDays(-29).Date;
+
+            for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
+            {
+                string key = date.ToString("dd/MM/yyyy");
+                dictionary.Add(key, 0);
+            }
+            Func<DAL.Models.Illness, bool> inDateRange = (illness) => illness.NegativeDate.Date > DateTime.Today.AddDays(-30) || illness.PositiveDate.Date > DateTime.Today.AddDays(-30);
+            var illnesses = GetIllnessess(inDateRange);
+            foreach (var illness in await illnesses)
+            {
+                for (var i = illness.PositiveDate.Date; i <= illness.NegativeDate.Date; i = i.AddDays(1))
+                {
+                    if (i >= startDate && i <= endDate && (i<illness.NegativeDate||illness.NegativeDate==illness.PositiveDate))
+                        dictionary[i.ToString("dd/MM/yyyy")]++;
+                }
+            }
+            return dictionary;
         }
+
     }
 }
