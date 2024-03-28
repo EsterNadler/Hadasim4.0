@@ -15,7 +15,7 @@ namespace BL
             this.context = context;
         }
 
-        public async Task Create(Patient patient)
+        public async Task Create(PatientRequest patient)
         {
             using (var stream = new MemoryStream()) {
 
@@ -37,12 +37,12 @@ namespace BL
                 await context.SaveChangesAsync();
             }
         }
-        public async Task<IEnumerable<Patient>> GetPatients()
+        public async Task<IEnumerable<PatientResponse>> GetPatients()
         {
             try
             {
                 var dbPatients = await context.Patients.ToListAsync();
-                return dbPatients.Select(dbp => new Patient
+                return dbPatients.Select(dbp => new PatientResponse
                 {
                     Id = dbp.Id,
                     FirstName = dbp.FirstName,
@@ -50,7 +50,8 @@ namespace BL
                     Phone = dbp.Phone,
                     CellPhone = dbp.CellPhone,
                     Address = dbp.Address,
-                    BirthDate = dbp.BirthDate
+                    BirthDate = dbp.BirthDate,
+                    Image = dbp.Image
                 });
             }
             catch (Exception ex)
@@ -60,12 +61,12 @@ namespace BL
             }
         }
 
-        public async Task<Patient> GetPatientById(string patientId)
+        public async Task<PatientResponse> GetPatientById(string patientId)
         {
             var dbPatient = await context.Patients.FindAsync(patientId);
             if (dbPatient != null)
             {
-                return new Patient
+                return new PatientResponse
                 {
                     Id = dbPatient.Id,
                     FirstName = dbPatient.FirstName,
@@ -73,7 +74,8 @@ namespace BL
                     Phone = dbPatient.Phone,
                     CellPhone = dbPatient.CellPhone,
                     Address = dbPatient.Address,
-                    BirthDate = dbPatient.BirthDate
+                    BirthDate = dbPatient.BirthDate,
+                    Image = dbPatient.Image
                 };
             }
             else
@@ -82,7 +84,7 @@ namespace BL
             }
         }
 
-        public async Task Update(string id, Patient patient)
+        public async Task Update(string id, PatientRequest patient)
         {
             var dbPatient = await context.Patients.FindAsync(id);
             

@@ -1,4 +1,5 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
+
     const patientList = document.getElementById("patientList");
     const patientForm = document.getElementById("patientForm");
     const patientIllnesses = document.getElementById("illnessesList");
@@ -42,10 +43,13 @@
 
         patientList.innerHTML = "";
         patients.forEach(patient => {
+
+
             const listItem = document.createElement("div");
-            //<strong>ID:</strong> ${patient.id}<br>
             listItem.innerHTML = `
-                <strong>Id:</strong> ${patient.id}<br>
+                <img src="data:image/png;base64,${patient.image}" style="max-width:${patient.image ? 180 : 0}px;max-height:{${patient.image} ? 140 : 0}px;float:right;"></img>
+
+                <strong style="float:clear">Id:</strong> ${patient.id}<br>
                 <strong>First Name:</strong> ${patient.firstName}<br>
                 <strong>Last Name:</strong> ${patient.lastName}<br>
                 <strong>Address:</strong> ${patient.address}<br>
@@ -53,6 +57,7 @@
                 <strong>Phone:</strong> ${patient.phone}<br>
                 <strong>CellPhone:</strong> ${patient.cellPhone}<br>
 
+               
                 <button class="editBtn" data-id="${patient.id}">Details</button>
                 <button class="deleteBtn" data-id="${patient.id}">Delete</button>
                 <hr>

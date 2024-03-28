@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Contracts
 {
-    public class Patient
+    public class PatientRequest
     {
         [StringLength(9)]
         public string Id { get; set; } = default!;

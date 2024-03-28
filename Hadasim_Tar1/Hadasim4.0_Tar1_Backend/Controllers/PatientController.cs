@@ -21,7 +21,6 @@ namespace Hadasim4._0_Tar1_Backend.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {
-            //return await bl.GetPatientById(id);
             var patient = await bl.GetPatientById(id);
             if (patient == null)
             {
@@ -42,7 +41,7 @@ namespace Hadasim4._0_Tar1_Backend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm] Patient patient)
+        public async Task<IActionResult> Create([FromForm] PatientRequest patient)
         {
             try
             {
@@ -62,7 +61,7 @@ namespace Hadasim4._0_Tar1_Backend.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(string id, [FromForm] Patient patient)
+        public async Task<IActionResult> Update(string id, [FromForm] PatientRequest patient)
         {
             if (id == null || patient == null)
             {
@@ -84,11 +83,6 @@ namespace Hadasim4._0_Tar1_Backend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
-            //var patientToDelete = await bl.GetPatientById(id);
-            //if (patientToDelete == null)
-            //{
-            //    return NotFound();
-            //}
 
             if (id == null)
                 return BadRequest();
