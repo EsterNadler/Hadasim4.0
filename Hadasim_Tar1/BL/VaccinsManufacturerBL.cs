@@ -12,11 +12,13 @@ namespace BL
     {
         private readonly HmoContext context;
 
+        //ctor
         public VaccinsManufacturerBL(HmoContext context)
         {
             this.context = context;
         }
 
+        //add a vm
         public async Task Create(Contracts.VaccinsManufacturer vm)
         {
             var dbvm = new DAL.Models.VaccinsManufacturer
@@ -34,6 +36,7 @@ namespace BL
                 throw;
             }
         }
+        //return all vms
         public async Task<IEnumerable<Contracts.VaccinsManufacturer>> GetVaccinsManufacturer()
         {
             try
@@ -51,7 +54,7 @@ namespace BL
                 throw;
             }
         }
-
+        //get certain vm by id
         public async Task<Contracts.VaccinsManufacturer> GetVaccinsManufacturerById(Guid vaccinsManufacturerId)
         {
             var dbvm = await context.VaccinsManufacturers.FindAsync(vaccinsManufacturerId);
@@ -68,6 +71,7 @@ namespace BL
                 throw new Exception("VaccinsManufacturer not found");
             }
         }
+        //update certain vm
         public async Task Update(Contracts.VaccinsManufacturer vm)
         {
             var dbvm = await context.VaccinsManufacturers.FindAsync(vm.Id);
@@ -81,6 +85,7 @@ namespace BL
             }
         }
 
+        //delete certain vm
         public async Task Delete(Guid vmId)
         {
             var dbvm = await context.VaccinsManufacturers.FindAsync(vmId);

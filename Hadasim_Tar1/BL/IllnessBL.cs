@@ -14,11 +14,13 @@ namespace BL
     {
         private readonly HmoContext context;
 
+        //ctor
         public IllnessBL(HmoContext context)
         {
             this.context = context;
         }
 
+        //adding new illness
         public async Task Create(Contracts.Illness illness)
         {
             var dbillness = new DAL.Models.Illness
@@ -38,6 +40,8 @@ namespace BL
                 throw;
             }
         }
+
+        //get all/part of illnesses
         public async Task<IEnumerable<Contracts.Illness>> GetIllnessess(Func<DAL.Models.Illness, bool>? func = null)
         {
             List<DAL.Models.Illness> dbillnesses;
@@ -47,7 +51,7 @@ namespace BL
                 if (func == null)
                     dbillnesses = await context.Illnesses.ToListAsync();
                 else
-                    dbillnesses = await context.Illnesses./*Where(func).*/ToListAsync();//problem to 
+                    dbillnesses = await context.Illnesses./*Where(func).*/ToListAsync();//Problem running ToListAsync on IEnumerable
 
                 return dbillnesses.Select(dbi => new Contracts.Illness
                 {
@@ -64,6 +68,7 @@ namespace BL
             }
         }
 
+        //get illnesses of certain patient
         public async Task<IEnumerable<Contracts.Illness>> GetillnessesByPatientId(string patient)
         {
             try
@@ -83,6 +88,7 @@ namespace BL
             }
         }
 
+        //get illness by id
         public async Task<Contracts.Illness> GetillnessById(Guid illnessId)
         {
             var dbIllness = await context.Illnesses.FindAsync(illnessId);
@@ -101,6 +107,8 @@ namespace BL
                 throw new Exception("Illness not found");
             }
         }
+
+        //update illness
         public async Task Update(Contracts.Illness illness)
         {
             var dbIllness = await context.Illnesses.FindAsync(illness.Id);
@@ -117,6 +125,7 @@ namespace BL
             }
         }
 
+        //delete illness
         public async Task Delete(Guid illnessId)
         {
             var dbIllness = await context.Illnesses.FindAsync(illnessId);

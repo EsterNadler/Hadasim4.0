@@ -10,12 +10,13 @@ namespace BL
     public class PatinetBL
     {
         private readonly HmoContext context;
-
+        //ctor
         public PatinetBL(HmoContext context)
         {
             this.context = context;
         }
 
+        //add a patient
         public async Task Create(PatientRequest patient)
         {
             using (var stream = new MemoryStream()) {
@@ -45,6 +46,8 @@ namespace BL
                 }
             }
         }
+
+        //get all the patients
         public async Task<IEnumerable<PatientResponse>> GetPatients()
         {
             try
@@ -69,6 +72,7 @@ namespace BL
             }
         }
 
+        //get a certain patient by id
         public async Task<PatientResponse> GetPatientById(string patientId)
         {
             var dbPatient = await context.Patients.FindAsync(patientId);
@@ -92,6 +96,7 @@ namespace BL
             }
         }
 
+        //update certain patient
         public async Task Update(string id, PatientRequest patient)
         {
             var dbPatient = await context.Patients.FindAsync(id);
@@ -117,6 +122,7 @@ namespace BL
             }
         }
 
+        //delete acertain patient
         public async Task Delete(string patientId)
         {
             var dbPatient = await context.Patients.FindAsync(patientId);

@@ -1,5 +1,6 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
-
+    //functions to display on a graph how many ills where in every day of the last 30 days
+    //************************************************************************************ */
     function fetchPatients() {
 
         const url = "http://localhost:5281/illness/statistics";
@@ -11,7 +12,6 @@
             })
             .catch(error => console.error("Error fetching patients:", error));
     }
-
 
     function displayIllnessStats(data) {
         const xValues = Object.keys(data);
@@ -29,7 +29,8 @@
             },
         });
     }
-
+    //************************************************************************************* */
+    //function to show on a graph how many patients where vaccinated or not
     function vaccinatedORnot() {
         fetch('/Vaccin/vaccination-status') 
             .then(response => {
@@ -64,7 +65,7 @@
             }
         });
     }
-
+    //**************************************************************************************** */
 
     vaccinatedORnot();
     fetchPatients();

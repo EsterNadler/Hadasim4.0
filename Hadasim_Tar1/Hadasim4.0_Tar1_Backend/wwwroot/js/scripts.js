@@ -39,6 +39,7 @@
             .catch(error => console.error("Error fetching patients:", error));
     }
 
+    //display list of all patients in HMO
     function displayPatients(patients) {
 
         patientList.innerHTML = "";
@@ -76,7 +77,7 @@
         });
     }
 
-
+    //fill the selection list with manufacturers
     function populateManufacturers(manufactureres) {
 
         const selectManufacturer = vaccinForm.getElementsByClassName("manufacturer")[0];
@@ -94,7 +95,8 @@
 
 
     //****************** Patient CRUD **************************
-
+    
+    //function to show the patient details
     function editPatient(patient) {
         var idInput = patientForm.getElementsByClassName("id")[0];
         idInput.disabled = true;
@@ -116,6 +118,7 @@
         patientForm.getElementsByClassName("cellPhone")[0].value = patient.cellPhone;
     }
 
+    //function to delete a patient
     function deletePatient(patientId) {
 
         const url = `http://localhost:5281/patient/${patientId}`;
@@ -127,6 +130,7 @@
             .catch(error => console.error("Error fetching patients:", error));
     }
 
+    //save the patient details (create/update)
     patientForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
@@ -204,6 +208,7 @@
 
     //******************** Ilness and Vaccin CRUD **************
 
+    //save the new illness to the current customer
     illnessForm.addEventListener("submit", function (event) {
         event.preventDefault();
         const patientId = patientForm.querySelector(".id").value;
@@ -229,6 +234,7 @@
             .catch(error => console.error("Error saving illness:", error));
     })
 
+    //save the new vaccin to the current customer
     vaccinForm.addEventListener("submit", function (event) {
         event.preventDefault();
         const patientId = patientForm.querySelector(".id").value;
@@ -258,6 +264,7 @@
 
     //======================= bind edited patient vaccins and illnesses ==================================
 
+    //show the vaccins of the current customer
     function displayVaccins(vaccins) {
 
         patientVaccins.innerHTML = "";
@@ -275,6 +282,7 @@
         });
     }
 
+     //show the illnesses of the current customer
     function displayIllnesses(illnesses) {
         patientIllnesses.innerHTML = "";
 
@@ -292,6 +300,7 @@
         });
     }
 
+     //show the vaccins&illnesses of the current customer
     function fillPatientIllnessesAndVaccinations(patientId) {
 
         const vaccinsUrl = `http://localhost:5281/vaccin/patient/${patientId}`;

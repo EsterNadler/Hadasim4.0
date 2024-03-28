@@ -13,12 +13,13 @@ namespace BL
     public class VaccinBL
     {
         private readonly HmoContext context;
-
+        //ctor
         public VaccinBL(HmoContext context)
         {
             this.context = context;
         }
 
+        //add a vaccin
         public async Task Create(Contracts.Vaccin vaccin)
         {
             var dbVaccin = new DAL.Models.Vaccin
@@ -40,6 +41,7 @@ namespace BL
                 throw;
             }
         }
+        //get all vaccins
         public async Task<IEnumerable<Contracts.Vaccin>> GetVaccins()
         {
             try
@@ -59,6 +61,7 @@ namespace BL
             }
         }
 
+        //get vaccins of certain patient
         public async Task<IEnumerable<Contracts.Vaccin>> GetVaccinsByPatientID(string patient)
         {
             try
@@ -78,7 +81,7 @@ namespace BL
             }
         }
 
-
+        //get vaccin by id
         public async Task<Contracts.Vaccin> GetVaccinById(Guid vaccinId)
         {
             var dbVaccin = await context.Vaccins.FindAsync(vaccinId);
@@ -97,6 +100,7 @@ namespace BL
                 throw new Exception("Vaccin not found");
             }
         }
+        //update certain id
         public async Task Update(Contracts.Vaccin vaccin)
         {
             var dbVaccin = await context.Vaccins.FindAsync(vaccin.Id);
@@ -113,6 +117,7 @@ namespace BL
             }
         }
 
+        //delete certain id
         public async Task Delete(Guid vaccinId)
         {
             var dbVaccin = await context.Vaccins.FindAsync(vaccinId);
@@ -127,11 +132,13 @@ namespace BL
             }
         }
 
+        //how many patient are vaccinated
         public async Task<int> GetVaccinatedCount()
         {
             return (await GetVaccins()).GroupBy(x => x.PatientID).Count();
         }
 
+        //how many patient are not vaccinated at all
         public async Task<int> GetUnvaccinatedCount()
         {
             return await context.Patients.CountAsync() - await GetVaccinatedCount();
