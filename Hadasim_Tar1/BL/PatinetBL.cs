@@ -1,6 +1,8 @@
 ﻿using Contracts;
 using DAL;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace BL
 {
@@ -15,18 +17,25 @@ namespace BL
 
         public async Task Create(Patient patient)
         {
-            var dbPatient = new DAL.Models.Patient
-            {
-                Id = patient.Id,
-                FirstName = patient.FirstName,
-                LastName = patient.LastName,
-                Phone = patient.Phone,
-                CellPhone = patient.CellPhone,
-                Address = patient.Address,
-                BirthDate = patient.BirthDate
-            };
-            context.Patients.Add(dbPatient);
-            await context.SaveChangesAsync();
+            using (var stream = new MemoryStream()) {
+
+                if (patient.Image != null)
+                    await patient.Image.CopyToAsync(stream);
+
+                var dbPatient = new DAL.Models.Patient
+                {
+                    Id = patient.Id,
+                    FirstName = patient.FirstName,
+                    LastName = patient.LastName,
+                    Phone = patient.Phone,
+                    CellPhone = patient.CellPhone,
+                    Address = patient.Address,
+                    BirthDate = patient.BirthDate,
+                    Image = patient.Image == null ? null : stream.ToArray()
+                };
+                context.Patients.Add(dbPatient);
+                await context.SaveChangesAsync();
+            }
         }
         public async Task<IEnumerable<Patient>> GetPatients()
         {
@@ -80,13 +89,22 @@ namespace BL
             if (dbPatient == null)
                 throw new KeyNotFoundException();
 
-            dbPatient.FirstName = patient.FirstName;
-            dbPatient.LastName = patient.LastName;
-            dbPatient.Phone = patient.Phone;
-            dbPatient.CellPhone = patient.CellPhone;
-            dbPatient.Address = patient.Address;
-            dbPatient.BirthDate = patient.BirthDate;
-            await context.SaveChangesAsync();
+            using (var stream = new MemoryStream())
+            {
+                if (patient.Image != null)
+                    await patient.Image.CopyToAsync(stream);
+                             
+                dbPatient.FirstName = patient.FirstName;
+                dbPatient.LastName = patient.LastName;
+                dbPatient.Phone = patient.Phone;
+                dbPatient.CellPhone = patient.CellPhone;
+                dbPatient.Address = patient.Address;
+                dbPatient.BirthDate = patient.BirthDate;
+                if(patient.Image != null)
+                    dbPatient.Image = stream.ToArray();
+
+                await context.SaveChangesAsync();
+            }
         }
 
         public async Task Delete(string patientId)

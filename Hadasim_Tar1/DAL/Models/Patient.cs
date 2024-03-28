@@ -27,5 +27,7 @@ namespace DAL.Models
         [Phone]
         [MaxLength(10)]
         public string CellPhone { get; set; } = default!;
+
+        public byte[]? Image { get; set; }
     }
 }

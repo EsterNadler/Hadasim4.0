@@ -41,22 +41,28 @@ namespace Hadasim4._0_Tar1_Backend.Controllers
             return Ok(patients);
         }
 
-
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Patient patient)//from body json////
+        public async Task<IActionResult> Create([FromForm] Patient patient)
         {
-            
-            if (patient == null)
+            try
             {
-                return BadRequest("Patient object is null");
-            }
+                if (patient == null)
+                {
+                    return BadRequest("Patient object is null");
+                }
 
-            await bl.Create(patient);
-            return CreatedAtAction(nameof(Get), new { id = patient.Id }, patient);
+                await bl.Create(patient);
+                return CreatedAtAction(nameof(Get), new { id = patient.Id }, patient);
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(string id, [FromBody] Patient patient)
+        public async Task<IActionResult> Update(string id, [FromForm] Patient patient)
         {
             if (id == null || patient == null)
             {
@@ -71,13 +77,6 @@ namespace Hadasim4._0_Tar1_Backend.Controllers
             {
                 return NotFound();
             }
-            //var existingPatient = await bl.GetPatientById(id);
-            //if (existingPatient == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //await bl.Update(patient);
             
             return NoContent();
         }

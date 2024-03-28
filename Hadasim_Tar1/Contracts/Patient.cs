@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 namespace Contracts
 {
@@ -24,6 +25,8 @@ namespace Contracts
         [Required]
         [Phone]
         [MaxLength(10)]
-        public string CellPhone { get; set; } = default!;   
+        public string CellPhone { get; set; } = default!;
+
+        public IFormFile Image { get; set; } = default!;
     }
 }
