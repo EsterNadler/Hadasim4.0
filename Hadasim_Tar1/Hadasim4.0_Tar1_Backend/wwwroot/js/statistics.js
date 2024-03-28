@@ -31,12 +31,12 @@
     }
 
     function vaccinatedORnot() {
-        fetch('/Vaccin/vaccination-status') // בקשת GET לנתיב המתאים לאנדפוינט שלך
+        fetch('/Vaccin/vaccination-status') 
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                return response.json(); // קריאה ל־JSON על התוצאה אם הבקשה הצליחה
+                return response.json();
             })
             .then(data => {
                 pieChart(data); // פרטי התוצאה מוצגים בקונסול

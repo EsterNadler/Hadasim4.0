@@ -3,7 +3,6 @@
     padding: 0;
     font-family: Arial, Consolas;
     display: flex;
-    /*justify-content: space-between;*/
 }
 
 .container {
@@ -11,8 +10,6 @@
     margin: 0 auto;
     display: flex;
     height: 100vh;
-    /*    justify-content: space-between;
-*/
 }
 
 #formSection, #addIllnessesandvaccins, #illnessesandvaccins {
@@ -29,16 +26,6 @@
     overflow-y: auto;
 }
 
-/*.patients-list {*/
-    /*width: 55%;*/
-    /*max-height: calc(100vh - 100px);*/
-    /*margin-right: 60px;*/
-/*}*/
-
-/*.patients-list::-webkit-scrollbar {
-    width: 10px; 
-}
-*/
 .patients-list::-webkit-scrollbar-thumb {
     background-color: #888; 
 }
@@ -73,6 +60,11 @@ button {
     color: #fff;
     border: none;
     cursor: pointer;
+}
+
+#statisticsBtn {
+    background-color: #ff0000;
+    color: #000000;
 }
 
 button:hover {
