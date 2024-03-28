@@ -1,6 +1,7 @@
 ﻿using Contracts;
 using DAL;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.IO;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -33,8 +34,15 @@ namespace BL
                     BirthDate = patient.BirthDate,
                     Image = patient.Image == null ? null : stream.ToArray()
                 };
-                context.Patients.Add(dbPatient);
-                await context.SaveChangesAsync();
+                try
+                {
+                    context.Patients.Add(dbPatient);
+                    await context.SaveChangesAsync();
+                }
+                catch(DbUpdateException)
+                {//TODO: log error
+                    throw;
+                }
             }
         }
         public async Task<IEnumerable<PatientResponse>> GetPatients()
@@ -54,9 +62,9 @@ namespace BL
                     Image = dbp.Image
                 });
             }
-            catch (Exception ex)
+            catch (InvalidOperationException)
             {
-                // log error
+                //TODO: log error
                 throw;
             }
         }

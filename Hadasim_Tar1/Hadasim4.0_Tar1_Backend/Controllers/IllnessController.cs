@@ -20,7 +20,6 @@ namespace Hadasim4._0_Tar1_Backend.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)
         {
-            //return await bl.GetPatientById(id);
             var illness = await bl.GetillnessById(id);
             if (illness == null)
             {
@@ -32,7 +31,6 @@ namespace Hadasim4._0_Tar1_Backend.Controllers
         [HttpGet("patient/{id}")]
         public async Task<IActionResult> Get(string id)
         {
-            //return await bl.GetPatientById(id);
             var illness = await bl.GetillnessesByPatientId(id);
             if (illness == null)
             {
@@ -46,16 +44,6 @@ namespace Hadasim4._0_Tar1_Backend.Controllers
         {
             var stats =await bl.GetStats();
             return Ok(stats);
-            //var start = DateTime.Now.AddMonths(-1).Date;
-            //var end = DateTime.Now.Date;
-            //var dict = new Dictionary<string, int>();
-            //var rnd = new Random(1);
-
-            //for (DateTime start2 = start; start2 <= end; start2 = start2.AddDays(1))
-            //{
-            //    dict.Add(start2.ToString("dd-MM-yyyy"), rnd.Next(30));
-            //}
-            //return Ok(dict);
         }
 
         [HttpGet]
@@ -71,7 +59,7 @@ namespace Hadasim4._0_Tar1_Backend.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Illness illness)//from body json////
+        public async Task<IActionResult> Create([FromBody] Illness illness)
         {
             if (illness == null)
             {

@@ -39,11 +39,10 @@
                 return response.json();
             })
             .then(data => {
-                pieChart(data); // פרטי התוצאה מוצגים בקונסול
-                // כאן תוכל להשתמש בנתונים באופן נוסף, לדוגמה, לעדכן איזה הודעה ב-HTML עם המידע
+                pieChart(data);
             })
             .catch(error => {
-                console.error('There was a problem with the fetch operation:', error); // אם הייתה בעיה בבקשה
+                console.error('There was a problem with the fetch operation:', error); 
             });
     }
 

@@ -29,8 +29,16 @@ namespace BL
                 VaccinsManufacturerID = vaccin.VaccinsManufacturerID,
 
             };
-            context.Vaccins.Add(dbVaccin);
-            await context.SaveChangesAsync();
+            try
+            {
+                context.Vaccins.Add(dbVaccin);
+                await context.SaveChangesAsync();
+            }
+            catch(DbUpdateException)
+            {
+                //TODO: log error
+                throw;
+            }
         }
         public async Task<IEnumerable<Contracts.Vaccin>> GetVaccins()
         {
@@ -45,9 +53,8 @@ namespace BL
                     VaccinsManufacturerID = dbv.VaccinsManufacturerID,
                 });
             }
-            catch (Exception ex)
+            catch (InvalidOperationException)
             {
-
                 throw;
             }
         }
@@ -65,9 +72,8 @@ namespace BL
                     VaccinsManufacturerID = dbv.VaccinsManufacturerID,
                 }).Where(dbv => dbv.PatientID == patient);
             }
-            catch (Exception ex)
+            catch (InvalidOperationException)
             {
-
                 throw;
             }
         }
@@ -96,7 +102,6 @@ namespace BL
             var dbVaccin = await context.Vaccins.FindAsync(vaccin.Id);
             if (dbVaccin != null)
             {
-                //dbIllness.Id = illness.Id;//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 dbVaccin.Date = vaccin.Date;
                 dbVaccin.PatientID = vaccin.PatientID;
                 dbVaccin.VaccinsManufacturerID = vaccin.VaccinsManufacturerID;

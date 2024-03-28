@@ -20,7 +20,6 @@ namespace Hadasim4._0_Tar1_Backend.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)
         {
-            //return await bl.GetPatientById(id);
             var vaccin = await bl.GetVaccinById(id);
             if (vaccin == null)
             {
@@ -32,7 +31,6 @@ namespace Hadasim4._0_Tar1_Backend.Controllers
         [HttpGet("patient/{id}")]
         public async Task<IActionResult> Get(string id)
         {
-            //return await bl.GetPatientById(id);
             var vaccin = await bl.GetVaccinsByPatientID(id);
             if (vaccin == null)
             {
@@ -60,7 +58,7 @@ namespace Hadasim4._0_Tar1_Backend.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Vaccin vaccin)//from body json////
+        public async Task<IActionResult> Create([FromBody] Vaccin vaccin)
         {
             if (vaccin == null)
             {
@@ -104,12 +102,12 @@ namespace Hadasim4._0_Tar1_Backend.Controllers
         {
             try
             {
-                int vaccinatedCount = await bl.GetVaccinatedCount(); // פונקציה שמחזירה את מספר האנשים שחוסנו
-                int unvaccinatedCount = await bl.GetUnvaccinatedCount(); // פונקציה שמחזירה את מספר האנשים שעדיין לא חוסנו
+                int vaccinatedCount = await bl.GetVaccinatedCount();
+                int unvaccinatedCount = await bl.GetUnvaccinatedCount();
 
-                int[] vaccinationStatus = new int[] { vaccinatedCount, unvaccinatedCount }; // יצירת מערך של זוג סדור [X, Y]
+                int[] vaccinationStatus = new int[] { vaccinatedCount, unvaccinatedCount };
 
-                return Ok(vaccinationStatus); // החזרת המערך בתור תגובת JSON
+                return Ok(vaccinationStatus);
             }
             catch (Exception ex)
             {

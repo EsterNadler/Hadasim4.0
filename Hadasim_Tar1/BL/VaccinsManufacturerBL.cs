@@ -21,12 +21,18 @@ namespace BL
         {
             var dbvm = new DAL.Models.VaccinsManufacturer
             {
-                Id = Guid.NewGuid(),//??????????????????????????????????????in contracts already...???
+                Id = Guid.NewGuid(),
                 Name = vm.Name
-
             };
-            context.VaccinsManufacturers.Add(dbvm);
-            await context.SaveChangesAsync();
+            try
+            {
+                context.VaccinsManufacturers.Add(dbvm);
+                await context.SaveChangesAsync();
+            }
+            catch(DbUpdateException)
+            {
+                throw;
+            }
         }
         public async Task<IEnumerable<Contracts.VaccinsManufacturer>> GetVaccinsManufacturer()
         {
@@ -39,9 +45,9 @@ namespace BL
                   Name = dbvm.Name
                 });
             }
-            catch (Exception ex)
+            catch (InvalidOperationException)
             {
-
+                //TODO: log error
                 throw;
             }
         }
@@ -67,7 +73,6 @@ namespace BL
             var dbvm = await context.VaccinsManufacturers.FindAsync(vm.Id);
             if (dbvm != null)
             {
-                //dbIllness.Id = illness.Id;//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                dbvm.Name = vm.Name;
             }
             else
@@ -81,7 +86,7 @@ namespace BL
             var dbvm = await context.VaccinsManufacturers.FindAsync(vmId);
             if (vmId != null)
             {
-                context.VaccinsManufacturers.Remove(dbvm);
+                context.VaccinsManufacturers.Remove(dbvm!);
                 await context.SaveChangesAsync();
             }
             else

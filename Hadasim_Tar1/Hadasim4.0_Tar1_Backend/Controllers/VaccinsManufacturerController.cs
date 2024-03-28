@@ -21,7 +21,6 @@ namespace Hadasim4._0_Tar1_Backend.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)
         {
-            //return await bl.GetPatientById(id);
             var vm = await bl.GetVaccinsManufacturerById(id);
             if (vm == null)
             {
@@ -42,7 +41,7 @@ namespace Hadasim4._0_Tar1_Backend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Contracts.VaccinsManufacturer vm)//from body json////
+        public async Task<IActionResult> Create([FromBody] Contracts.VaccinsManufacturer vm)
         {
             if (vm == null)
             {

@@ -34,21 +34,20 @@ namespace BL
                 await context.SaveChangesAsync();
             }
             catch (DbUpdateException)
-            {
+            {//TODO: log error
                 throw;
             }
         }
         public async Task<IEnumerable<Contracts.Illness>> GetIllnessess(Func<DAL.Models.Illness, bool>? func = null)
         {
             List<DAL.Models.Illness> dbillnesses;
-            var x = context.Illnesses;
 
             try
             {
                 if (func == null)
                     dbillnesses = await context.Illnesses.ToListAsync();
                 else
-                    dbillnesses = await context.Illnesses./*Where(func).*/ToListAsync();
+                    dbillnesses = await context.Illnesses./*Where(func).*/ToListAsync();//problem to 
 
                 return dbillnesses.Select(dbi => new Contracts.Illness
                 {
@@ -60,7 +59,7 @@ namespace BL
             }
             catch (InvalidOperationException)
             {
-
+                //TODO: log error
                 throw;
             }
         }
@@ -78,9 +77,8 @@ namespace BL
                     PatientId = dbi.PatientId
                 }).Where(dbp => dbp.PatientId == patient);
             }
-            catch (Exception ex)
-            {
-
+            catch (InvalidOperationException)
+            {//TODO: log error
                 throw;
             }
         }
@@ -108,7 +106,6 @@ namespace BL
             var dbIllness = await context.Illnesses.FindAsync(illness.Id);
             if (dbIllness != null)
             {
-                //dbIllness.Id = illness.Id;//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 dbIllness.PositiveDate = illness.PositiveDate;
                 dbIllness.NegativeDate = illness.NegativeDate;
                 dbIllness.PatientId = illness.PatientId;
@@ -125,7 +122,7 @@ namespace BL
             var dbIllness = await context.Illnesses.FindAsync(illnessId);
             if (illnessId != null)
             {
-                context.Illnesses.Remove(dbIllness);
+                context.Illnesses.Remove(dbIllness!);
                 await context.SaveChangesAsync();
             }
             else
